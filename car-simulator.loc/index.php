@@ -6,7 +6,7 @@ use Classes\RodoCar;
 use Classes\SportCar;
 
 require 'autoloader.php';
-RodoCar::setCountry(Car::COUNTRY_AUTOGOT);
+RodoCar::setCountry(Car::COUNTRY_AUTOBOT);
 $roboCar = new RodoCar('optimus prime', 300);
 $roboCar->transform();
 

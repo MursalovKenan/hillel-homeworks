@@ -1,6 +1,8 @@
 <?php
 namespace Classes;
 
+use SpeedLimitException;
+
 abstract class Car implements MovableInterface
 {
     private static string $country;
@@ -11,12 +13,15 @@ abstract class Car implements MovableInterface
     public  const COUNTRY_BMV = 'Germany';
     public  const COUNTRY_FERRARI = 'Italy';
     public  const COUNTRY_ROBOCAR = 'USA';
-    public  const COUNTRY_AUTOGOT = 'Megatron';
+    public  const COUNTRY_AUTOBOT = 'Megatron';
 
+    /**
+     * @throws SpeedLimitException
+     */
     public function __construct(string $name, int $maxSpeed)
     {
-        if ($maxSpeed <= 0) {
-            return null;
+        if ($maxSpeed < 0) {
+            throw new SpeedLimitException('Speed can`t be less then 0');
         }
         $this->name = $name;
         $this->maxSpeed = $maxSpeed;
@@ -24,50 +29,30 @@ abstract class Car implements MovableInterface
         $this->isIgnitionOn = false;
     }
 
-    public static function getCountry(): mixed
-    {
-        return self::$country;
-    }
-
-    public static function setCountry(string $country): void
-    {
-        if (in_array($country,
-        [
-            self::COUNTRY_AUTOGOT,
-            self::COUNTRY_BMV,
-            self::COUNTRY_FERRARI,
-            self::COUNTRY_ROBOCAR
-        ]))
-        {
-            self::$country = $country;
-        }
-        else{
-            die('Country not supported yat' . PHP_EOL);
-        }
-    }
-
     public function start(): bool
     {
-        if ($this->isIgnitionOn) {
-            return $this->isIgnitionOn;
-        } else
+        if (!$this->isIgnitionOn) {
             $this->isIgnitionOn = true;
+        }
         return $this->isIgnitionOn;
     }
 
     public function stop(): bool
     {
-        if (!$this->isIgnitionOn) {
-            return $this->isIgnitionOn;
-        } else
+        if ($this->isIgnitionOn) {
+            $this->speed = 0;
             $this->isIgnitionOn = false;
-        return $this->isIgnitionOn;
+        }
+        return true;
     }
 
+    /**
+     * @throws SpeedLimitException
+     */
     public function up(int $unit): string
     {
         if ($unit < 0) {
-            return 'Speed cen`t be less then 0';
+            throw new SpeedLimitException('Speed up unit can`t be less then 0');
         }
         if (!$this->isIgnitionOn) {
             return 'ignition is off. start the car';
@@ -75,14 +60,19 @@ abstract class Car implements MovableInterface
         $currentSpeed = $this->speed + $unit;
         if ($currentSpeed <= $this->maxSpeed) {
             $this->speed = $currentSpeed;
+        }else{
+            $this->speed = $this->maxSpeed;
         }
         return 'Current speed is ' . $this->speed;
     }
 
+    /**
+     * @throws SpeedLimitException
+     */
     public function down(int $unit): string
     {
         if ($unit < 0) {
-            return 'Speed cen`t be less then 0';
+            throw new SpeedLimitException('Speed down unit can`t be less then 0');
         }
         if (!$this->isIgnitionOn) {
             return 'ignition is off. start the car';
@@ -96,13 +86,31 @@ abstract class Car implements MovableInterface
         return 'Current speed is ' . $this->speed;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
+    public static function getCountry(): string
+    {
+        return self::$country;
+    }
+
+    public static function setCountry(string $country): void
+    {
+        if (in_array($country,
+            [
+                self::COUNTRY_AUTOBOT,
+                self::COUNTRY_BMV,
+                self::COUNTRY_FERRARI,
+                self::COUNTRY_ROBOCAR
+            ]))
+        {
+            self::$country = $country;
+        }
+        else{
+            die('Country not supported yat' . PHP_EOL);
+        }
+    }
 
 }
