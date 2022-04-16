@@ -1,19 +1,21 @@
 <?php
+
 namespace Classes;
 
 use Classes\Exception\SpeedLimitException;
 
 abstract class Car implements MovableInterface
 {
+    public const COUNTRY_BMV = 'Germany';
+    public const COUNTRY_FERRARI = 'Italy';
+    public const COUNTRY_ROBOCAR = 'USA';
+    public const COUNTRY_AUTOBOT = 'Megatron';
     private static string $country;
     private int $speed;
     private int $maxSpeed;
     private bool $isIgnitionOn;
     private string $name;
-    public  const COUNTRY_BMV = 'Germany';
-    public  const COUNTRY_FERRARI = 'Italy';
-    public  const COUNTRY_ROBOCAR = 'USA';
-    public  const COUNTRY_AUTOBOT = 'Megatron';
+    private Engine $engine;
 
     /**
      * @throws SpeedLimitException
@@ -27,6 +29,26 @@ abstract class Car implements MovableInterface
         $this->maxSpeed = $maxSpeed;
         $this->speed = 0;
         $this->isIgnitionOn = false;
+    }
+
+    public static function getCountry(): string
+    {
+        return self::$country;
+    }
+
+    public static function setCountry(string $country): void
+    {
+        if (in_array($country,
+            [
+                self::COUNTRY_AUTOBOT,
+                self::COUNTRY_BMV,
+                self::COUNTRY_FERRARI,
+                self::COUNTRY_ROBOCAR
+            ])) {
+            self::$country = $country;
+        } else {
+            die('Country not supported yat' . PHP_EOL);
+        }
     }
 
     public function start(): bool
@@ -60,7 +82,7 @@ abstract class Car implements MovableInterface
         $currentSpeed = $this->speed + $unit;
         if ($currentSpeed <= $this->maxSpeed) {
             $this->speed = $currentSpeed;
-        }else{
+        } else {
             $this->speed = $this->maxSpeed;
         }
         return 'Current speed is ' . $this->speed;
@@ -89,28 +111,6 @@ abstract class Car implements MovableInterface
     public function getName(): string
     {
         return $this->name;
-    }
-
-    public static function getCountry(): string
-    {
-        return self::$country;
-    }
-
-    public static function setCountry(string $country): void
-    {
-        if (in_array($country,
-            [
-                self::COUNTRY_AUTOBOT,
-                self::COUNTRY_BMV,
-                self::COUNTRY_FERRARI,
-                self::COUNTRY_ROBOCAR
-            ]))
-        {
-            self::$country = $country;
-        }
-        else{
-            die('Country not supported yat' . PHP_EOL);
-        }
     }
 
 }

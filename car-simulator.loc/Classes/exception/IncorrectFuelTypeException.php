@@ -4,7 +4,7 @@ namespace Classes\Exception;
 
 use Exception;
 
-class SpeedLimitException extends Exception
+class IncorrectFuelTypeException extends Exception
 {
 
 }
