@@ -1,7 +1,7 @@
 <?php
 namespace Classes;
 
-use SpeedLimitException;
+use Classes\Exception\SpeedLimitException;
 
 abstract class Car implements MovableInterface
 {
