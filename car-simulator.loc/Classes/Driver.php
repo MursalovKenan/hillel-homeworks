@@ -4,24 +4,47 @@ namespace Classes;
 
 class Driver
 {
-    public static function simulateDrive(MovableInterface $car)
+    private string $mane;
+
+    /**
+     * @param string $mane
+     */
+    public function __construct(string $mane)
     {
-        echo '###################################' . PHP_EOL;
+        $this->mane = $mane;
+    }
+
+
+    public function drive(MovableInterface $car)
+    {
+        $driveInfo = '###################################' . PHP_EOL;
 
         if (!$car->start()) {
-            echo $car->getBrand() . ' can`t start' . PHP_EOL;
-            return;
+            $driveInfo .= $car->getBrand() . ' can`t start' . PHP_EOL;
+            return $driveInfo;
         }
-        echo 'Run the car ' . $car->getBrand() . PHP_EOL;
+        $driveInfo .= 'Run the car ' . $car->getBrand() . PHP_EOL;
         for ($i = 0; $i < rand(5, 10); $i++) {
             $unit = rand(1, 100);
             if (rand(0, 2)) {
-                echo 'Speed up unit = ' . $unit . PHP_EOL;
-                echo $car->up($unit) . PHP_EOL;
+                $driveInfo .= 'Speed up unit = ' . $unit . PHP_EOL;
+                $driveInfo .= $car->up($unit) . PHP_EOL;
             } else {
-                echo 'Speed down unit = ' . $unit . PHP_EOL;
-                echo $car->down($unit) . PHP_EOL;
+                $driveInfo .= 'Speed down unit = ' . $unit . PHP_EOL;
+                $driveInfo .= $car->down($unit) . PHP_EOL;
             }
         }
+        $car->stop();
+        return $driveInfo;
     }
+
+    /**
+     * @return string
+     */
+    public function getMane(): string
+    {
+        return $this->mane;
+    }
+
+
 }

@@ -16,6 +16,7 @@ abstract class Car implements MovableInterface
     private bool $isIgnitionOn;
     private string $brand;
     private Engine $engine;
+    private Battery $battery;
 
     /**
      * @throws SpeedLimitException
@@ -101,7 +102,7 @@ abstract class Car implements MovableInterface
         if (!$this->isIgnitionOn) {
             return 'ignition is off. start the car';
         }
-        $currentSpeed = $this->speed - $unit;
+        $currentSpeed =  $this->speed - $unit;
         if ($currentSpeed >= 0) {
             $this->speed = $currentSpeed;
         } else {
@@ -121,6 +122,22 @@ abstract class Car implements MovableInterface
     public function getEngine(): Engine
     {
         return $this->engine;
+    }
+
+    /**
+     * @return Battery
+     */
+    public function getBattery(): Battery
+    {
+        return $this->battery;
+    }
+
+    /**
+     * @param Battery $battery
+     */
+    public function setBattery(Battery $battery): void
+    {
+        $this->battery = $battery;
     }
 
 

@@ -7,9 +7,9 @@ class Truck extends Car
     private int $carrying;
 
     public function __construct(string $brand,
-                                int $maxSpeed,
+                                int    $maxSpeed,
                                 string $fuelType = Engine::FUEL_DIESEL,
-                                int $carrying = 100)
+                                int    $carrying = 100)
     {
         $this->carrying = $carrying;
         parent::__construct($brand, $maxSpeed, $fuelType);

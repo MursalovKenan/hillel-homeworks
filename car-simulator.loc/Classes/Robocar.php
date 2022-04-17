@@ -2,7 +2,7 @@
 
 namespace Classes;
 
-class RodoCar extends Car
+class Robocar extends Car
 {
     private bool $isCar;
 
