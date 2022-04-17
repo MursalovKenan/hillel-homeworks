@@ -1,0 +1,14 @@
+{
+    "name": "kenan/learn-composer.loc",
+    "description": "This is my homework to learn composer.",
+    "type": "n",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kenan Mursalov",
+            "email": "kenan.mursalov@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
