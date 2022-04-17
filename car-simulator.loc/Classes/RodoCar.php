@@ -6,9 +6,9 @@ class RodoCar extends Car
 {
     private bool $isCar;
 
-    public function __construct(string $name, int $maxSpeed)
+    public function __construct(string $brand, int $maxSpeed)
     {
-        parent::__construct($name, $maxSpeed);
+        parent::__construct($brand, $maxSpeed);
         $this->isCar = false;
     }
 

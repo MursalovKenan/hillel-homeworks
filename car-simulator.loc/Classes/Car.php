@@ -14,21 +14,23 @@ abstract class Car implements MovableInterface
     private int $speed;
     private int $maxSpeed;
     private bool $isIgnitionOn;
-    private string $name;
+    private string $brand;
     private Engine $engine;
 
     /**
      * @throws SpeedLimitException
+     * @throws Exception\IncorrectFuelTypeException
      */
-    public function __construct(string $name, int $maxSpeed)
+    public function __construct(string $brand, int $maxSpeed, string $fuelType = Engine::FUEL_DIESEL)
     {
         if ($maxSpeed < 0) {
             throw new SpeedLimitException('Speed can`t be less then 0');
         }
-        $this->name = $name;
+        $this->brand = $brand;
         $this->maxSpeed = $maxSpeed;
         $this->speed = 0;
         $this->isIgnitionOn = false;
+        $this->engine = new Engine($fuelType);
     }
 
     public static function getCountry(): string
@@ -108,9 +110,18 @@ abstract class Car implements MovableInterface
         return 'Current speed is ' . $this->speed;
     }
 
-    public function getName(): string
+    public function getBrand(): string
     {
-        return $this->name;
+        return $this->brand;
     }
+
+    /**
+     * @return Engine
+     */
+    public function getEngine(): Engine
+    {
+        return $this->engine;
+    }
+
 
 }

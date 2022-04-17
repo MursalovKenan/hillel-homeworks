@@ -30,5 +30,5 @@ interface MovableInterface
      */
     public function down(int $unit);
 
-    public function getName(): string;
+    public function getBrand(): string;
 }

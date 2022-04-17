@@ -9,10 +9,10 @@ class Driver
         echo '###################################' . PHP_EOL;
 
         if (!$car->start()) {
-            echo $car->getName() . ' can`t start' . PHP_EOL;
+            echo $car->getBrand() . ' can`t start' . PHP_EOL;
             return;
         }
-        echo 'Run the car ' . $car->getName() . PHP_EOL;
+        echo 'Run the car ' . $car->getBrand() . PHP_EOL;
         for ($i = 0; $i < rand(5, 10); $i++) {
             $unit = rand(1, 100);
             if (rand(0, 2)) {
