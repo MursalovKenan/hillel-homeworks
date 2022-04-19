@@ -7,7 +7,7 @@ use Classes\Exception\SpeedLimitException;
 
 class HwDemo
 {
-    public static function showComposItIob()
+    public static function showComposItIob(): string
     {
         $info = 'show composition#######################################' . PHP_EOL;
         $truck = new Truck('Mercedes-Benz Sprinter', '200', Engine::FUEL_DIESEL, '345');
@@ -32,7 +32,7 @@ class HwDemo
         return $info;
     }
 
-    public static function driveTheCar()
+    public static function driveTheCar(): string
     {
         $cars = [];
         try {
@@ -53,5 +53,14 @@ class HwDemo
             $info .= $driver->drive($car);
         }
         return $info;
+    }
+
+    public static function testException()
+    {
+        try {
+            return new Engine('soda');
+        }catch (IncorrectFuelTypeException $ex){
+            return $ex->getMessage();
+        }
     }
 }
