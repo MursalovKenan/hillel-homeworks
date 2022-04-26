@@ -1,11 +1,19 @@
 <?php
 
+namespace Mursalov\Logger;
 
-class Loger extends \Psr\Log\AbstractLogger
+use Psr\Log\AbstractLogger;
+
+class Loger extends AbstractLogger
 {
+    private Formatter $formatter;
 
     public function log($level, \Stringable|string $message, array $context = []): void
     {
-        // TODO: Implement log() method.
+        $this->formatter = new Formatter();
+        $dateFormat = 'Y-m-d H:i:s';
+        $logDate = date($dateFormat);
+        $logInfo = $this->formatter->format($logDate, $level, $message, $context);
+        echo $logInfo;
     }
 }
