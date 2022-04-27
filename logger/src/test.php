@@ -10,4 +10,12 @@ include __DIR__ . '/../vendor/autoload.php';
 $formatter = new Formatter();
 $writer = new FileWriter($formatter);
 $logger = new Logger($writer);
-$logger->alert('Holly shit happen');
+$context = [
+    'a' => 'aa',
+    'b' => 'aa',
+    'c' => [
+        'a1' => 'a1a',
+        'b1' => 'a1a'
+    ]
+];
+$logger->emergency('Holy shit happened', $context);
