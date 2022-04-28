@@ -1,0 +1,15 @@
+{
+    "name": "kenan/test-logger",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kenan Mursalov",
+            "email": "kenan.mursalov@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "mursalov/logger": "dev-master"
+    }
+}

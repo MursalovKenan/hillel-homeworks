@@ -30,14 +30,18 @@ class Game
         do {
             $this->player->takeCard($this->deck->getCard());
             echo $this->dealer->getName() . ':   ' . $strDealerHand . PHP_EOL;
-            echo $this->player->getName() . ':   ' . $this->player->getPlayerHand()->showCards() . $this->player->getScore()->getScore() . PHP_EOL;
+            echo $this->player->getName() .
+                ':   ' .
+                $this->player->getPlayerHand()->showCards() .
+                $this->player->getScore()->getScore() .
+                PHP_EOL;
             echo 'Do you wont more card ( write |no| to stop): ';
             $input = trim(fgets($stdin));
             if ($this->player->getScore()->getScore() > 21) {
                 echo 'You lose' . PHP_EOL;
                 exit();
             }
-        } while ($input != 'no');
+        } while ($input !== 'no');
 
         while ($this->dealer->getScore()->getScore() < 21
             && $this->player->getScore()->getScore() > $this->dealer->getScore()->getScore()) {
