@@ -11,6 +11,8 @@
       <path value="$PROJECT_DIR$/learn-composer.loc/vendor/guzzlehttp/guzzle" />
       <path value="$PROJECT_DIR$/learn-composer.loc/vendor/symfony/deprecation-contracts" />
       <path value="$PROJECT_DIR$/learn-composer.loc/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/black-jack/vendor/composer" />
+      <path value="$PROJECT_DIR$/black-jack/vendor/mursalov/card-deck" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1">

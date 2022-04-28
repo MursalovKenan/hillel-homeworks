@@ -14,6 +14,8 @@
       <excludeFolder url="file://$MODULE_DIR$/learn-composer.loc/vendor/guzzlehttp/guzzle" />
       <excludeFolder url="file://$MODULE_DIR$/learn-composer.loc/vendor/symfony/deprecation-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/learn-composer.loc/vendor/guzzlehttp/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/black-jack/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/black-jack/vendor/mursalov/card-deck" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

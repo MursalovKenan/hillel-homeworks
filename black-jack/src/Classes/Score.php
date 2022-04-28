@@ -9,7 +9,7 @@ class Score
 {
     private int $score;
 
-    public function countScore(array $cards)
+    public function countScore(array $cards): void
     {
         $this->score = 0;
         foreach ($cards as $card) {
@@ -17,22 +17,17 @@ class Score
         }
     }
 
-    private function addScore(Card $card)
+    private function addScore(Card $card): void
     {
         $nominal = $card->getNominal()->value;
         if ($nominal >= 2 && $nominal <= 10) {
             $this->score += (int)$nominal;
-        } elseif ($nominal == Nominal::Ace->value) {
+        } elseif ($nominal === Nominal::Ace->value) {
             $this->score += 11;
         } else {
             $this->score += 10;
         }
-
     }
-
-    /**
-     * @return int
-     */
     public function getScore(): int
     {
         return $this->score;
